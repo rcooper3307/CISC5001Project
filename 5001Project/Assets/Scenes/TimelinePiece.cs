@@ -66,7 +66,7 @@ public class TimelinePiece : MonoBehaviour
 
     public void Init(TimelineSlot slot)
     {
-        renderer.sprite = slot.renderer.sprite;
+        //renderer.sprite = slot.renderer.sprite;
         Tslot = slot;
     }
 
