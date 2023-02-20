@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +7,10 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private bool mouseDragging, placed;
     [SerializeField] private Vector2 offset, originalPos;
+    [SerializeField] private int value;
+    private bool active = false;
     private TimelineSlot Tslot;
-
-    public void Init(TimelineSlot slot)
-    {
-        renderer.sprite = slot.renderer.sprite;
-        Tslot = slot;
-    }
+    
     //When the object spawns, its original position is recorded
     void Awake()
     {
@@ -23,10 +20,13 @@ public class TimelinePiece : MonoBehaviour
     //When the mouse is held down, the object is picked up and grabbed
     void OnMouseDown()
     {
-        mouseDragging = true;
+        if(active)
+        {
+            mouseDragging = true;
 
-        //This exists so that the object doesn't immediately snap to the mouse position when it is grabbed.
-        offset = GetMousePos() - (Vector2)transform.position;
+            //This exists so that the object doesn't immediately snap to the mouse position when it is grabbed.
+            offset = GetMousePos() - (Vector2)transform.position;
+        }
     }
 
     //When the mouse is let go and the object is not in a slot on the timeline, it goes back to its original position
@@ -45,11 +45,7 @@ public class TimelinePiece : MonoBehaviour
             transform.position = originalPos;
             mouseDragging = false;
         }
-        
     }
-
-   
-
 
     void Update()
     {
@@ -60,12 +56,41 @@ public class TimelinePiece : MonoBehaviour
         //Moves the position of the object to the mouse position if it is being held down
         var mousePosition = GetMousePos();
 
-        transform.position = mousePosition - offset;
-
-        
+        transform.position = mousePosition - offset;      
     }
+
     Vector2 GetMousePos()
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    public void Init(TimelineSlot slot)
+    {
+        renderer.sprite = slot.renderer.sprite;
+        Tslot = slot;
+    }
+
+    //Makes piece draggable
+    public void activate()
+    {
+        active = true;
+    }
+
+    //Makes piece undraggable
+    public void deactivate()
+    {
+        active = false;
+    }
+
+    //Returns value of a piece
+    public int getValue()
+    {
+        return value;
+    }
+
+    //Change return position
+    public void newPos()
+    {
+        originalPos = transform.position;
     }
 }

@@ -5,9 +5,16 @@ using UnityEngine;
 public class TimelineSlot : MonoBehaviour
 {
     public SpriteRenderer renderer;
+    TimelineManager manager;
+
+    void Awake()
+    {
+        manager = FindObjectOfType<TimelineManager>();
+    }
+
     public void Placed()
     {
-        Debug.Log("Placed");
+        manager.Restart();
     }
 }
 
