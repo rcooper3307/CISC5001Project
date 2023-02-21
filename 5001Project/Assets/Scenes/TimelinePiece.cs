@@ -33,7 +33,7 @@ public class TimelinePiece : MonoBehaviour
     void OnMouseUp()
     {
         //If the object is within dropping distance of the slot, then it stays in the slot spot.
-        if(Vector2.Distance(transform.position,Tslot.transform.position) < 3)
+        if(Vector2.Distance(transform.position,Tslot.transform.position) < 1)
         {
             transform.position = Tslot.transform.position;
             Tslot.Placed();
