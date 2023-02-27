@@ -1,6 +1,9 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.IO;
+using System;
 
 public class TimelinePiece : MonoBehaviour
 {
@@ -8,14 +11,39 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private bool mouseDragging, placed;
     [SerializeField] private Vector2 offset, originalPos;
     [SerializeField] private int value;
+    [SerializeField] public TextMeshPro text;
     private bool active = false;
     private TimelineSlot Tslot;
+    string filePath, fileName;
+    string[] eventsArr;
     
     //When the object spawns, its original position is recorded
     void Awake()
     {
         originalPos = transform.position;
     }
+
+    void Start()
+    {
+        fileName = "World_History.txt";
+        filePath = Application.dataPath + "/" + fileName;
+    }
+    //I want to read the file by line, separating each item by a comma and then putting all those items into an array
+    //Then, I want to put all the arrays into an array of arrays to be randomly selected from whenever the game begins
+    //
+    void readFile()
+    {
+        using (StreamReader sr = new StreamReader(filePath))
+        {
+            // Reads the next line
+            string line = sr.ReadLine();
+
+            // Split the string by commas
+            string[] items = line.Split(',');
+        }
+    }
+
+
     
     //When the mouse is held down, the object is picked up and grabbed
     void OnMouseDown()
