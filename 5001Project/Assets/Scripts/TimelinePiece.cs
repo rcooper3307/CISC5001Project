@@ -1,6 +1,8 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class TimelinePiece : MonoBehaviour
 {
@@ -8,14 +10,20 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private bool mouseDragging, placed;
     [SerializeField] private Vector2 offset, originalPos;
     [SerializeField] private int value;
+    [SerializeField] public TextMeshPro text;
     private bool active = false;
     private TimelineSlot Tslot;
+    
     
     //When the object spawns, its original position is recorded
     void Awake()
     {
         originalPos = transform.position;
     }
+
+    
+
+
     
     //When the mouse is held down, the object is picked up and grabbed
     void OnMouseDown()
