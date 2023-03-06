@@ -146,6 +146,7 @@ public class TimelineManager : MonoBehaviour
         else //condition for when all the pieces are selected
         {
             Debug.Log("FINISHED");
+
         }
     }
 }
