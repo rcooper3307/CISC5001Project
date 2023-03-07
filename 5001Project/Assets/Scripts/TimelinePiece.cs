@@ -10,7 +10,7 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private bool mouseDragging, placed;
     [SerializeField] private Vector2 offset, originalPos;
     [SerializeField] private int value;
-    [SerializeField] public TextMeshPro text;
+    [SerializeField] public TextMeshPro caption;
     private bool active = false;
     private TimelineSlot Tslot;
     
@@ -21,7 +21,10 @@ public class TimelinePiece : MonoBehaviour
         originalPos = transform.position;
     }
 
-    
+    void Start()
+    {
+        //caption.text = "bingo bongo this is a test";
+    }
 
 
     

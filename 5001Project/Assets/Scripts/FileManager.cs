@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Linq;
+using TMPro;
 using UnityEngine.UI;
 
 
@@ -15,6 +16,11 @@ public class FileManager : MonoBehaviour
     [SerializeField] GameObject QuestionPiece1;
     [SerializeField] GameObject QuestionPiece2;
     [SerializeField] GameObject DragPiece;
+    [SerializeField] Text testText;
+    [SerializeField] TextMeshPro questionBox;
+
+
+    
     //[SerializeField] Text QP1textbox = QuestionPiece1.GetComponentInChildren<Text>();
     //[SerializeField] Text QP2textbox = QuestionPiece2.GetComponentInChildren<Text>();
     //[SerializeField] Text DPtextbox  = DragPiece.GetComponentInChildren<Text>();
@@ -29,7 +35,13 @@ public class FileManager : MonoBehaviour
     {
         fileName = "World_History.txt";
         filePath = Application.dataPath + "/FileInput/" + fileName;
+        //testText.text = "this is my test";
+        //questionpiece1 is a gameobject with a script that has a text field in it. i want to be able to control that script from this file
+      
         readFile();
+        QuestionPiece1.GetComponent<TimelinePiece>().caption.text = eventsArr[7][0];
+        QuestionPiece2.GetComponent<TimelinePiece>().caption.text = eventsArr[7][1];
+        DragPiece.GetComponent<TimelinePiece>().caption.text = eventsArr[7][2];
         printLists();
     }
     //I want to read the file by line, separating each item by a comma and then putting all those items into an array
