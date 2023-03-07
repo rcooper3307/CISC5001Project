@@ -5,13 +5,11 @@ using UnityEngine;
 public class PersistentData : MonoBehaviour
 {
     [SerializeField] string playerName;
-    [SerializeField] GameObject piecelist;
 
     public static PersistentData Instance;
 
     private void Awake()
     {
-        piecelist = GameObject.FindGameObjectWithTag("pieceList");
         if (Instance == null)
         {
             DontDestroyOnLoad(this);

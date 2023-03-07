@@ -9,6 +9,7 @@ public class TimelineManager : MonoBehaviour
     [SerializeField] private List<TimelineSlot> slots;
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
+    public GameObject pieceList;
     public int[] givenvalues = new int[2];
     public int[] selectedIndex = new int[2];
     public bool LGR = false;
@@ -16,6 +17,17 @@ public class TimelineManager : MonoBehaviour
     // Awake is called before the start
     void Awake()
     {
+        int piecelistsize = 0;
+        pieceList = GameObject.FindGameObjectWithTag("pieceList");
+        piecelistsize = pieceList.transform.childCount;
+
+        for (int i = 0; i < piecelistsize; i++)
+        {
+            TimelinePiece placeholder;
+            placeholder = pieceList.GetComponentInChildren<TimelinePiece>(i);
+            pieces.Add(placeholder);
+        }
+
         for (int i = 0; i < 2; i++)
         {
             int listsize = pieces.Count;
@@ -148,5 +160,13 @@ public class TimelineManager : MonoBehaviour
             Debug.Log("FINISHED");
 
         }
+    }
+}
+
+public static class ExtensionFunction
+{
+    public static T GetComponentInChildren<T>(this GameObject gameObject, int index)
+    {
+        return gameObject.transform.GetChild(index).GetComponent<T>();
     }
 }
