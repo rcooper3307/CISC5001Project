@@ -95,6 +95,10 @@ public class TimelinePiece : MonoBehaviour
     {
         return value;
     }
+    public void setValue(int v)
+    {
+        value = v;
+    }
 
     //Change return position
     public void newPos()

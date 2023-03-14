@@ -11,10 +11,10 @@ public class FileManager : MonoBehaviour
 {
     string filePath, fileName;
     [SerializeField] public List<List<string>> eventsArr = new List<List<string>>();
-    [SerializeField] int test = 0;
-    [SerializeField] GameObject QuestionPiece1;
-    [SerializeField] GameObject QuestionPiece2;
-    [SerializeField] GameObject DragPiece;
+    //[SerializeField] int test = 0;
+    //[SerializeField] GameObject QuestionPiece1;
+    //[SerializeField] GameObject QuestionPiece2;
+    //[SerializeField] GameObject DragPiece;
     //[SerializeField] Text QP1textbox = QuestionPiece1.GetComponentInChildren<Text>();
     //[SerializeField] Text QP2textbox = QuestionPiece2.GetComponentInChildren<Text>();
     //[SerializeField] Text DPtextbox  = DragPiece.GetComponentInChildren<Text>();
@@ -30,7 +30,8 @@ public class FileManager : MonoBehaviour
         fileName = "World_History.txt";
         filePath = Application.dataPath + "/FileInput/" + fileName;
         readFile();
-        printLists();
+        //QuestionPiece1.GetComponent<TimelinePiece>().text.text = eventsArr[0][2];
+        //printLists();
     }
     //I want to read the file by line, separating each item by a comma and then putting all those items into an array
     //Then, I want to put all the arrays into an array of arrays to be randomly selected from whenever the game begins
@@ -71,7 +72,7 @@ public class FileManager : MonoBehaviour
             }
             Debug.Log(line);
         }
-        test++;
+        //test++;
     }
 
     // Update is called once per frame
