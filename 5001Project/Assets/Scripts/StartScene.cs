@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class StartScene : MonoBehaviour
 {
     [SerializeField] InputField playerNameInput;
+    public GameObject pieceList;
     
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         
     }
 

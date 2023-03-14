@@ -10,8 +10,10 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private bool mouseDragging, placed;
     [SerializeField] private Vector2 offset, originalPos;
     [SerializeField] private int value;
+    [SerializeField] private int seriesVal;
     [SerializeField] public TextMeshPro text;
     private bool active = false;
+    private bool picked = false;
     private TimelineSlot Tslot;
     
     
@@ -20,10 +22,6 @@ public class TimelinePiece : MonoBehaviour
     {
         originalPos = transform.position;
     }
-
-    
-
-
     
     //When the mouse is held down, the object is picked up and grabbed
     void OnMouseDown()
@@ -96,9 +94,27 @@ public class TimelinePiece : MonoBehaviour
         return value;
     }
 
+    //Returns series value of a piece
+    public int getSeries()
+    {
+        return seriesVal;
+    }
+
     //Change return position
     public void newPos()
     {
         originalPos = transform.position;
+    }
+
+    //Return Picked Status
+    public bool isPicked()
+    {
+        return picked;
+    }
+
+    //Sets piece as picked
+    public void pickPiece()
+    {
+        picked = true;
     }
 }

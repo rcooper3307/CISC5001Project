@@ -14,7 +14,7 @@ public class TimelineSlot : MonoBehaviour
 
     public void Placed()
     {
-        manager.Restart();
+        manager.Proceed();
     }
 }
 

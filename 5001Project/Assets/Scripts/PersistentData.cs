@@ -5,6 +5,9 @@ using UnityEngine;
 public class PersistentData : MonoBehaviour
 {
     [SerializeField] string playerName;
+    [SerializeField] int seriesOn;
+    [SerializeField] public int[] valueOfPieces = new int[2];
+    [SerializeField] bool done = false;
 
     public static PersistentData Instance;
 
@@ -41,5 +44,40 @@ public class PersistentData : MonoBehaviour
     public string GetName()
     {
         return playerName;
+    }
+
+    public void GameDone()
+    {
+        done = true;
+    }
+    public bool GameStatus()
+    {
+        return done;
+    }
+
+    public int GetSeries()
+    {
+        return seriesOn;
+    }
+
+    public void SetSeries(int SV)
+    {
+        seriesOn = SV;
+    }
+
+    public int GetPieceOne()
+    {
+        return valueOfPieces[0];
+    }
+
+    public int GetPieceTwo()
+    {
+        return valueOfPieces[1];
+    }
+
+    public void SetPieces(int POne, int PTwo)
+    {
+        valueOfPieces[0] = POne;
+        valueOfPieces[1] = PTwo;
     }
 }
