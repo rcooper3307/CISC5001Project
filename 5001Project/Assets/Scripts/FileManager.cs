@@ -11,10 +11,9 @@ public class FileManager : MonoBehaviour
 {
     string filePath, fileName;
     [SerializeField] public List<List<string>> eventsArr = new List<List<string>>();
-    [SerializeField] int test = 0;
-    [SerializeField] GameObject QuestionPiece1;
-    [SerializeField] GameObject QuestionPiece2;
-    [SerializeField] GameObject DragPiece;
+    //[SerializeField] GameObject QuestionPiece1;
+    //[SerializeField] GameObject QuestionPiece2;
+    //[SerializeField] GameObject DragPiece;
     //[SerializeField] Text QP1textbox = QuestionPiece1.GetComponentInChildren<Text>();
     //[SerializeField] Text QP2textbox = QuestionPiece2.GetComponentInChildren<Text>();
     //[SerializeField] Text DPtextbox  = DragPiece.GetComponentInChildren<Text>();
@@ -49,12 +48,6 @@ public class FileManager : MonoBehaviour
                 List<string> items = line.Split(',').ToList();
                 //Add lists into list of lists
                 eventsArr.Add(items);
-                
-                /*
-                foreach (string s in items)
-                    Debug.Log(s + ", ");
-                Debug.Log("-------------------------------");
-                */
             }
            
         }
@@ -71,7 +64,6 @@ public class FileManager : MonoBehaviour
             }
             Debug.Log(line);
         }
-        test++;
     }
 
     // Update is called once per frame
