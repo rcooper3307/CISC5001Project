@@ -11,7 +11,8 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private Vector2 offset, originalPos;
     [SerializeField] private int value;
     [SerializeField] private int seriesVal;
-    [SerializeField] public TextMeshPro text;
+    [SerializeField] public TextMeshPro textChild;
+    [SerializeField] private string description;
     private bool active = false;
     private bool picked = false;
     private TimelineSlot Tslot;
@@ -21,6 +22,15 @@ public class TimelinePiece : MonoBehaviour
     void Awake()
     {
         originalPos = transform.position;
+        if (textChild == null)
+        {
+            textChild = GetComponentInChildren<TextMeshPro>();
+        }
+    }
+
+    void Start()
+    {
+        
     }
     
     //When the mouse is held down, the object is picked up and grabbed
@@ -87,19 +97,41 @@ public class TimelinePiece : MonoBehaviour
     {
         active = false;
     }
-
+    //Sets value of a piece
+    public void setValue(int val)
+    {
+        value = val;
+    }
     //Returns value of a piece
     public int getValue()
     {
         return value;
     }
-
+    //Sets series of a piece
+    public void setSeries(int val)
+    {
+        seriesVal = val;
+    }
     //Returns series value of a piece
     public int getSeries()
     {
         return seriesVal;
     }
 
+    public void setDesc(string desc)
+    {
+        description = desc;
+    }
+
+    public string getDesc()
+    {
+        return description;
+    }
+
+    public void setText(string text)
+    {
+        textChild.text = text;
+    }
     //Change return position
     public void newPos()
     {

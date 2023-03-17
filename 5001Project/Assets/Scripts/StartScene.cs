@@ -3,16 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
+using System;
+using System.Linq;
 
 public class StartScene : MonoBehaviour
 {
-    [SerializeField] InputField playerNameInput;
-    public GameObject pieceList;
-    
+    [SerializeField] public InputField playerNameInput;
+    [SerializeField] public GameObject pieceList;
+    [SerializeField] public GameObject TimelineSegment;
+    string filePath, fileName;
+
     // Start is called before the first frame update
     void Start()
     {  
-        
+        if (pieceList == null)
+        {
+            pieceList = GameObject.FindGameObjectWithTag("pieceList");
+        }
+        setPieceList();
+    }
+
+    void setPieceList()
+    {
+        fileName = "World_History.txt";
+        filePath = Application.dataPath + "/FileInput/" + fileName;
+        using (StreamReader sr = new StreamReader(filePath))
+        {
+            int series = 1;
+            int value = 1;
+            Vector2 position = new Vector2((float)-600.9695, (float)-408.0458);
+            while (!sr.EndOfStream)
+            {
+                
+
+                // Reads the next line
+                string line = sr.ReadLine();
+
+                // Split the string by commas
+                List<string> items = line.Split(',').ToList();
+                foreach(string s in items)
+                {
+                    //Declare and initialize TimelinePiece and add it to PieceList
+                    GameObject p = Instantiate(TimelineSegment, position, Quaternion.identity);
+                    p.name = s;
+                    p.GetComponent<TimelinePiece>().setText(s);
+                    p.GetComponent<TimelinePiece>().setValue(value);
+                    p.GetComponent<TimelinePiece>().setSeries(series);
+                    p.transform.SetParent(pieceList.transform);
+                    value++;
+                }
+                series++;
+              
+                
+                //Add lists into list of lists
+                //eventsArr.Add(items);
+            }
+
+        }
     }
 
     // Update is called once per frame

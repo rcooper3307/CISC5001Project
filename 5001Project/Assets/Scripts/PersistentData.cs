@@ -8,6 +8,7 @@ public class PersistentData : MonoBehaviour
     [SerializeField] int seriesOn;
     [SerializeField] public int[] valueOfPieces = new int[2];
     [SerializeField] bool done = false;
+    
 
     public static PersistentData Instance;
 

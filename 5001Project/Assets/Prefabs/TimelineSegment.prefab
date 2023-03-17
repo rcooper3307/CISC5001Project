@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1433549652133017647}
   m_Layer: 0
   m_Name: text
-  m_TagString: Untagged
+  m_TagString: text_object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   originalPos: {x: 0, y: 0}
   value: 0
+  seriesVal: 0
   text: {fileID: 1433549652133017647}
 --- !u!222 &1685662496346523447
 CanvasRenderer:
