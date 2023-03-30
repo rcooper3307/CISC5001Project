@@ -13,6 +13,9 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private int seriesVal;
     [SerializeField] public TextMeshPro textChild;
     [SerializeField] private string description;
+    [SerializeField] PersistentData p;
+
+
     private bool active = false;
     private bool picked = false;
     private TimelineSlot Tslot;
@@ -30,7 +33,7 @@ public class TimelinePiece : MonoBehaviour
 
     void Start()
     {
-        
+        p = FindObjectOfType<PersistentData>();
     }
     
     //When the mouse is held down, the object is picked up and grabbed
@@ -48,18 +51,24 @@ public class TimelinePiece : MonoBehaviour
     //When the mouse is let go and the object is not in a slot on the timeline, it goes back to its original position
     void OnMouseUp()
     {
-        //If the object is within dropping distance of the slot, then it stays in the slot spot.
-        if(Vector2.Distance(transform.position,Tslot.transform.position) < 1)
+        if(active == true)
         {
-            transform.position = Tslot.transform.position;
-            Tslot.Placed();
-            placed = true;
-        }
-        //otherwise, it returns to its original position
-        else
-        {
-            transform.position = originalPos;
-            mouseDragging = false;
+            //If the object is within dropping distance of the slot, then it stays in the slot spot.
+            if (Vector2.Distance(transform.position, Tslot.transform.position) < 1)
+            {
+                p.Correct();
+                transform.position = Tslot.transform.position;
+               
+                Tslot.Placed();
+                placed = true;
+            }
+            //otherwise, it returns to its original position
+            else
+            {
+                p.Wrong();
+                transform.position = originalPos;
+                mouseDragging = false;
+            }
         }
     }
 
@@ -149,4 +158,7 @@ public class TimelinePiece : MonoBehaviour
     {
         picked = true;
     }
+
+    
+    
 }
