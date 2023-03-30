@@ -10,6 +10,7 @@ public class TimelineManager : MonoBehaviour
     [SerializeField] private List<TimelineSlot> slots;
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
+    [SerializeField] PersistentData p;
     public GameObject pieceList;
     public int pieceSeries;
     public int[] givenvalues = new int[2];
@@ -24,8 +25,11 @@ public class TimelineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         SpawnSlots();
         SpawnPiece();
+        p = FindObjectOfType<PersistentData>();
+        
     }
     
     //Initial Slot Spawner
@@ -62,9 +66,11 @@ public class TimelineManager : MonoBehaviour
         piecesSelected.Add(p);
         pieces.Remove(p);
     }
+  
 
-    public void Proceed()
+public void Proceed()
     {
+
         //Cleanup Section
         piecesSelected[2].deactivate();
         piecesSelected[2].transform.position = selectedLoc.position;
@@ -72,7 +78,7 @@ public class TimelineManager : MonoBehaviour
         piecesSelected[1].transform.position = selectedLoc.position;
 
         //Post Game Section
-        if(!PersistentData.Instance.GameStatus())
+        if (!PersistentData.Instance.GameStatus())
             SceneManager.LoadScene("PickOne");
         else
             SceneManager.LoadScene("MainMenu");

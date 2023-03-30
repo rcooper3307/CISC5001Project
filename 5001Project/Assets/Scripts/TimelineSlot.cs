@@ -16,5 +16,6 @@ public class TimelineSlot : MonoBehaviour
     {
         manager.Proceed();
     }
+
 }
 
