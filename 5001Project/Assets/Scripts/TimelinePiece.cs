@@ -14,7 +14,7 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] public TextMeshPro textChild;
     [SerializeField] private string description;
     private bool active = false;
-    private bool picked = false;
+    [SerializeField] private bool picked = false;
     private TimelineSlot Tslot;
     
     

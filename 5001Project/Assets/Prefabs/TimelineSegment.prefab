@@ -310,7 +310,9 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0}
   value: 0
   seriesVal: 0
-  text: {fileID: 1433549652133017647}
+  textChild: {fileID: 0}
+  description: 
+  picked: 0
 --- !u!222 &1685662496346523447
 CanvasRenderer:
   m_ObjectHideFlags: 0

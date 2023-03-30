@@ -11,6 +11,7 @@ public class PickOneScript : MonoBehaviour
     public GameObject pieceList;
     public int pieceSeries;
     public int[] givenvalues = new int[2];
+    public int[] indexValues = new int[2];
     public bool LGR = true;
 
     void Awake()
@@ -36,12 +37,12 @@ public class PickOneScript : MonoBehaviour
         //Assigns first piece and sets series value
         int listsize = pieces.Count;
         int random = Random.Range(0,listsize-1);
+        indexValues[0] = random;
 
         givenvalues[0] = pieces[random].getValue();
         pieceSeries = pieces[random].getSeries();
 
         pieces[random].transform.position = shownSpawnLoc.GetChild(0).position;
-        pieces[random].pickPiece();
             
         Select(pieces[random]);
 
@@ -53,10 +54,10 @@ public class PickOneScript : MonoBehaviour
 
         }while(pieces[random].getSeries() != pieceSeries);
 
+        indexValues[1] = random;
         givenvalues[1] = pieces[random].getValue();
 
         pieces[random].transform.position = shownSpawnLoc.GetChild(1).position;
-        pieces[random].pickPiece();
             
         Select(pieces[random]);
         
@@ -92,6 +93,9 @@ public class PickOneScript : MonoBehaviour
         //Cleanup Section
         int pieceindex = (piecesSelected.Count)-1;
 
+        piecesSelected[pieceindex].pickPiece();
+        piecesSelected[pieceindex-1].pickPiece();
+
         piecesSelected[pieceindex].transform.position = selectedLoc.position;
         piecesSelected[pieceindex-1].transform.position = selectedLoc.position;
 
@@ -100,8 +104,7 @@ public class PickOneScript : MonoBehaviour
         for(int i = 0; i < listsize; i++)
         {
             if (pieces[i].getSeries() == pieceSeries)
-            {
-                pieces[i].pickPiece();     
+            { 
                 Select(pieces[i]);
                 break;
             }
@@ -154,5 +157,11 @@ public class PickOneScript : MonoBehaviour
             else
                 pieces.Add(placeholder);
         }
+    }
+    
+    public void Timeline()
+    {
+        PersistentData.Instance.SetScene("PickOne");
+        SceneManager.LoadScene("Timeline");
     }
 }

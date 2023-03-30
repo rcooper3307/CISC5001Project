@@ -45,7 +45,7 @@ public class TimelineManager : MonoBehaviour
         piecesSelected[2].transform.position = pieceSpawnLoc.position;
         piecesSelected[2].activate();
         piecesSelected[2].newPos();
-
+        
         int value = piecesSelected[2].getValue();
         Debug.Log("VALUE OF CURRENT PIECE " + value);
 
@@ -70,6 +70,8 @@ public class TimelineManager : MonoBehaviour
         piecesSelected[2].transform.position = selectedLoc.position;
         piecesSelected[0].transform.position = selectedLoc.position;
         piecesSelected[1].transform.position = selectedLoc.position;
+
+        piecesSelected[2].pickPiece(); 
 
         //Post Game Section
         if(!PersistentData.Instance.GameStatus())
@@ -151,20 +153,18 @@ public class TimelineManager : MonoBehaviour
 
         int listsize = pieces.Count;
         int[] selectedIndex = new int[2];
-            Debug.Log("HELP : " + givenvalues[0] + " " + givenvalues[1]);
+
         for(int i = 0; i < listsize; i++)
         {
             Debug.Log(pieces[i].getValue());
             if (pieces[i].getValue() == givenvalues[0] )
             {
-                Debug.Log("COND 1");
-                pieces[i].pickPiece();   
+                Debug.Log("COND 1");  
                 selectedIndex[0] = i;  
             }
             else if (pieces[i].getValue() == givenvalues[1])
             {
-                Debug.Log("COND 2");
-                pieces[i].pickPiece();    
+                Debug.Log("COND 2");  
                 selectedIndex[1] = i;    
             }
         }
@@ -174,6 +174,12 @@ public class TimelineManager : MonoBehaviour
             Select(pieces[selectedIndex[1]]);
         else
             Select(pieces[selectedIndex[1]-1]);
+    }
+    
+    public void Timeline()
+    {
+        PersistentData.Instance.SetScene("Menu");
+        SceneManager.LoadScene("Timeline");
     }
 }
 

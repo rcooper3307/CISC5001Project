@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PersistentData : MonoBehaviour
 {
-    [SerializeField] string playerName;
+    [SerializeField] string playerName, previousScene;
     [SerializeField] int seriesOn;
     [SerializeField] public int[] valueOfPieces = new int[2];
     [SerializeField] bool done = false;
@@ -80,5 +80,15 @@ public class PersistentData : MonoBehaviour
     {
         valueOfPieces[0] = POne;
         valueOfPieces[1] = PTwo;
+    }
+
+    public void SetScene(string s)
+    {
+        previousScene = s;
+    }
+
+    public string GetScene()
+    {
+        return previousScene;
     }
 }
