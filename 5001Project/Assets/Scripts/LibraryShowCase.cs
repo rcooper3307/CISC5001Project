@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class LibraryShowCase : MonoBehaviour
 {
@@ -9,6 +12,8 @@ public class LibraryShowCase : MonoBehaviour
     public GameObject pieceList;
     public int piecelistsize;
     public int currentpiece;
+    public Text titleField;
+    public string titlestring;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +32,10 @@ public class LibraryShowCase : MonoBehaviour
         if(currentpiece != piecelistsize - 1)
         {
             pieces[currentpiece].transform.position = outofFrameLoc.position;
-            pieces[++currentpiece].transform.position = displayLoc.position;   
+            pieces[++currentpiece].transform.position = displayLoc.position;  
+
+            titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
+            titleField.text = titlestring;
         }
         else
         {
@@ -40,7 +48,10 @@ public class LibraryShowCase : MonoBehaviour
         if(currentpiece != 0)
         {
             pieces[currentpiece].transform.position = outofFrameLoc.position;
-            pieces[--currentpiece].transform.position = displayLoc.position;  
+            pieces[--currentpiece].transform.position = displayLoc.position;   
+            
+            titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
+            titleField.text = titlestring;
         }
         else
         {
@@ -65,5 +76,14 @@ public class LibraryShowCase : MonoBehaviour
 
         piecelistsize = pieces.Count;
         pieces[currentpiece].transform.position = displayLoc.position;
+
+        titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
+        titleField.text = titlestring;
+    }
+
+    public void GotoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        pieces[currentpiece].transform.position = outofFrameLoc.position;
     }
 }
