@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PersistentData : MonoBehaviour
 {
-    [SerializeField] string playerName, previousScene;
+    [SerializeField] string playerName;
     [SerializeField] int seriesOn;
     [SerializeField] public int[] valueOfPieces = new int[2];
     [SerializeField] bool done = false;
-    
+    [SerializeField] AudioSource rightAnswer;
+    [SerializeField] AudioSource wrongAnswer;
+
 
     public static PersistentData Instance;
 
@@ -81,14 +83,30 @@ public class PersistentData : MonoBehaviour
         valueOfPieces[0] = POne;
         valueOfPieces[1] = PTwo;
     }
-
-    public void SetScene(string s)
+    IEnumerator DelayThreeSeconds()
     {
-        previousScene = s;
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(0.1f);
+        AudioSource.PlayClipAtPoint(rightAnswer.clip, new Vector2(0, 0));
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        // Code to execute after 3 second delay
     }
-
-    public string GetScene()
+    public void Correct()
     {
-        return previousScene;
+        Debug.Log("COOOOOOOOORRRRRRRRRRRRECT");
+        StartCoroutine(DelayThreeSeconds());
+        
+        
+    }
+    public void Wrong()
+    {
+        Debug.Log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE WRONG");
+        
+        AudioSource.PlayClipAtPoint(wrongAnswer.clip, new Vector2(0, 0));
     }
 }

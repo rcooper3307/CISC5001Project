@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: c6e2e646a0e597540a8aa23b958453b2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Futura Round
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3477a00a74414cd458b476f4f32c2b17, type: 3}
+  - {fileID: 12800000, guid: 40eac9b7da646d44ba356f17a7ab5b90, type: 3}
+  - {fileID: 12800000, guid: 828c011811af1dc4bba13092cf0aa3fc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

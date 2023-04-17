@@ -8,6 +8,7 @@ public class PickOneScript : MonoBehaviour
     [SerializeField] private Transform shownSpawnLoc, selectedLoc, buttonLoc;
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
+    [SerializeField] PersistentData p;
     public GameObject pieceList;
     public int pieceSeries;
     public int[] givenvalues = new int[2];
@@ -22,7 +23,7 @@ public class PickOneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        p = FindObjectOfType<PersistentData>();
     }
 
     // Update is called once per frame
@@ -88,8 +89,11 @@ public class PickOneScript : MonoBehaviour
         Debug.Log(LGR);
     }
 
+
+
     void Proceed()
     {
+
         //Cleanup Section
         int pieceindex = (piecesSelected.Count)-1;
 
@@ -130,14 +134,17 @@ public class PickOneScript : MonoBehaviour
         piecesSelected.Add(p);
         pieces.Remove(p);
     }
-
+     //plays the wrong noise
     public void SelectWrong()
     {
+        p.Wrong();
         Debug.Log("Wrong");
-    }
 
+    }
+    //plays the right noise
     public void SelectRight()
     {
+        p.Correct();
         Debug.Log("Right");
         Proceed();
     }
