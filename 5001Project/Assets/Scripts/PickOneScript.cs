@@ -89,12 +89,8 @@ public class PickOneScript : MonoBehaviour
         Debug.Log(LGR);
     }
 
-
-
-    void Proceed()
+    public void CleanUp()
     {
-
-        //Cleanup Section
         int pieceindex = (piecesSelected.Count)-1;
 
         piecesSelected[pieceindex].pickPiece();
@@ -102,6 +98,11 @@ public class PickOneScript : MonoBehaviour
 
         piecesSelected[pieceindex].transform.position = selectedLoc.position;
         piecesSelected[pieceindex-1].transform.position = selectedLoc.position;
+    }
+
+    void Proceed()
+    {
+        CleanUp();
 
         //Selects the last piece in the series
         int listsize = pieces.Count;

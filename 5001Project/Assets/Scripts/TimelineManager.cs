@@ -67,23 +67,30 @@ public class TimelineManager : MonoBehaviour
         pieces.Remove(p);
     }
   
-
-public void Proceed()
+    public void CleanUp()
     {
-
-        //Cleanup Section
         piecesSelected[2].deactivate();
         piecesSelected[2].transform.position = selectedLoc.position;
         piecesSelected[0].transform.position = selectedLoc.position;
         piecesSelected[1].transform.position = selectedLoc.position;
 
         piecesSelected[2].pickPiece(); 
+    }
+
+    public void Proceed()
+    {
+        CleanUp();
 
         //Post Game Section
         if (!PersistentData.Instance.GameStatus())
             SceneManager.LoadScene("PickOne");
         else
+        {
             SceneManager.LoadScene("MainMenu");
+            for (int i = 0; i < pieceList.transform.childCount; i++)
+                pieceList.GetComponentInChildren<TimelinePiece>(i).releasePiece();
+            PersistentData.Instance.GameUndone();
+        }
     }
 /*
     public void Restart()

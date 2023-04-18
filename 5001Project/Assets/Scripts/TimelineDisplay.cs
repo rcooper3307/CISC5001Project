@@ -20,7 +20,7 @@ public class TimelineDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -64,9 +64,9 @@ public class TimelineDisplay : MonoBehaviour
             ElementsToPause[i].SetActive(false);
         }
         Timeline.SetActive(true);
+
         Time.timeScale = 0f;
 
-        pieceList = GameObject.FindGameObjectWithTag("pieceList");
         piecelistsize = pieceList.transform.childCount;
 
         currentpiece = 0;
@@ -79,6 +79,7 @@ public class TimelineDisplay : MonoBehaviour
                 pieces.Add(placeholder);
         }
 
+        pieceList = GameObject.FindGameObjectWithTag("pieceList");
         piecelistsize = pieces.Count;
 
         titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
@@ -93,9 +94,11 @@ public class TimelineDisplay : MonoBehaviour
         {
             ElementsToPause[i].SetActive(true);
         }
-        Timeline.SetActive(false);
+        pieceList.SetActive(true);
+
         Time.timeScale = 1f;
 
-        pieceList.SetActive(true);
+        Timeline.SetActive(false);
     }
+    
 }

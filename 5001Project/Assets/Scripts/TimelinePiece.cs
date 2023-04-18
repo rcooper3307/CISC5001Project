@@ -159,6 +159,9 @@ public class TimelinePiece : MonoBehaviour
         picked = true;
     }
 
-    
-    
+    //Sets piece as not picked
+    public void releasePiece()
+    {
+        picked = false;
+    }
 }
