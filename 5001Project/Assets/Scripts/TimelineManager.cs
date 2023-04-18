@@ -181,12 +181,6 @@ public void Proceed()
         else
             Select(pieces[selectedIndex[1]-1]);
     }
-    
-    public void Timeline()
-    {
-        PersistentData.Instance.SetScene("Menu");
-        SceneManager.LoadScene("Timeline");
-    }
 }
 
 public static class ExtensionFunction

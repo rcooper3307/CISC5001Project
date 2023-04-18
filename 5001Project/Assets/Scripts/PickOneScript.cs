@@ -165,10 +165,4 @@ public class PickOneScript : MonoBehaviour
                 pieces.Add(placeholder);
         }
     }
-    
-    public void Timeline()
-    {
-        PersistentData.Instance.SetScene("PickOne");
-        SceneManager.LoadScene("Timeline");
-    }
 }

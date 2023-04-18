@@ -57,7 +57,6 @@ public class TimelineDisplay : MonoBehaviour
         }
     }
 
-
     public void DisplayTimeline()
     {
         for (int i = 0; i < ElementsToPause.Count; i++)
@@ -84,6 +83,8 @@ public class TimelineDisplay : MonoBehaviour
 
         titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
         titleField.text = titlestring;
+
+        pieceList.SetActive(false);
     }
     
     public void Return()
@@ -94,5 +95,7 @@ public class TimelineDisplay : MonoBehaviour
         }
         Timeline.SetActive(false);
         Time.timeScale = 1f;
+
+        pieceList.SetActive(true);
     }
 }
