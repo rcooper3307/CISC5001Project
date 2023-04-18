@@ -14,6 +14,7 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] public TextMeshPro textChild;
     [SerializeField] private string description;
     [SerializeField] PersistentData p;
+    ProgressScript progress;
 
 
     private bool active = false;
@@ -34,6 +35,7 @@ public class TimelinePiece : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<PersistentData>();
+        progress = FindObjectOfType<ProgressScript>();
     }
     
     //When the mouse is held down, the object is picked up and grabbed
@@ -57,6 +59,7 @@ public class TimelinePiece : MonoBehaviour
             if (Vector2.Distance(transform.position, Tslot.transform.position) < 1)
             {
                 p.Correct();
+                
                 transform.position = Tslot.transform.position;
                
                 Tslot.Placed();
@@ -71,6 +74,7 @@ public class TimelinePiece : MonoBehaviour
             }
         }
     }
+
 
     void Update()
     {

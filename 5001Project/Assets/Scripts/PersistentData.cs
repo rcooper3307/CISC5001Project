@@ -10,6 +10,8 @@ public class PersistentData : MonoBehaviour
     [SerializeField] bool done = false;
     [SerializeField] AudioSource rightAnswer;
     [SerializeField] AudioSource wrongAnswer;
+    public int finalSeries = 999;
+    public float progressBar = 0;
 
 
     public static PersistentData Instance;
@@ -36,7 +38,8 @@ public class PersistentData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //if(SceneManager.GetActiveScene().name == "Menu" || "PickOne")
+
     }
 
     public void SetName(string s)
@@ -83,12 +86,12 @@ public class PersistentData : MonoBehaviour
         valueOfPieces[0] = POne;
         valueOfPieces[1] = PTwo;
     }
-    IEnumerator DelayThreeSeconds()
+    IEnumerator Delay()
     {
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
+        //yield on a new YieldInstruction that waits for .1 seconds.
         yield return new WaitForSeconds(0.1f);
         AudioSource.PlayClipAtPoint(rightAnswer.clip, new Vector2(0, 0));
 
@@ -99,7 +102,7 @@ public class PersistentData : MonoBehaviour
     public void Correct()
     {
         Debug.Log("COOOOOOOOORRRRRRRRRRRRECT");
-        StartCoroutine(DelayThreeSeconds());
+        StartCoroutine(Delay());
         
         
     }
