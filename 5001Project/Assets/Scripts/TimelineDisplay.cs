@@ -67,6 +67,7 @@ public class TimelineDisplay : MonoBehaviour
 
         Time.timeScale = 0f;
 
+        pieceList = GameObject.FindGameObjectWithTag("pieceList");
         piecelistsize = pieceList.transform.childCount;
 
         currentpiece = 0;
@@ -79,7 +80,6 @@ public class TimelineDisplay : MonoBehaviour
                 pieces.Add(placeholder);
         }
 
-        pieceList = GameObject.FindGameObjectWithTag("pieceList");
         piecelistsize = pieces.Count;
 
         titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
