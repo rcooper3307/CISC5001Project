@@ -7,12 +7,15 @@ using System.IO;
 using System;
 using System.Linq;
 
+
 public class StartScene : MonoBehaviour
 {
     [SerializeField] public InputField playerNameInput;
+    [SerializeField] public InputField playerDateInput;
     [SerializeField] public GameObject pieceList;
     [SerializeField] public GameObject TimelineSegment;
     string filePath, fileName;
+    Vector2 position = new Vector2((float)-600.9695, (float)-408.0458);
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class StartScene : MonoBehaviour
         }
         setPieceList();
     }
-
+    //reads file input and turns them into timeline piece objects
     void setPieceList()
     {
         fileName = "World_History.txt";
@@ -32,7 +35,7 @@ public class StartScene : MonoBehaviour
         {
             int series = 1;
             int value = 1;
-            Vector2 position = new Vector2((float)-600.9695, (float)-408.0458);
+            
             while (!sr.EndOfStream)
             {
                 
@@ -72,7 +75,19 @@ public class StartScene : MonoBehaviour
     public void PlayGame()
     {
         string s = playerNameInput.text;
+        
         PersistentData.Instance.SetName(s);
+        /*
+         * Commented out code to insert a value for the players name and date to be used as an object
+        string d = playerDateInput.text;
+        GameObject p = Instantiate(TimelineSegment, position, Quaternion.identity);
+        p.name = s;
+        p.GetComponent<TimelinePiece>().setText(s);
+        p.GetComponent<TimelinePiece>().setValue(int.Parse(d));
+        p.GetComponent<TimelinePiece>().setSeries(PersistentData.Instance.finalSeries);
+        p.transform.SetParent(pieceList.transform);
+        */
+        
         SceneManager.LoadScene("MainMenu");
     }
 }

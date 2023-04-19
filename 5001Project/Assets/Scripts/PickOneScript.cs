@@ -9,6 +9,9 @@ public class PickOneScript : MonoBehaviour
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] PersistentData p;
+    ProgressScript progress;
+    
+    
     public GameObject pieceList;
     public int pieceSeries;
     public int[] givenvalues = new int[2];
@@ -24,6 +27,8 @@ public class PickOneScript : MonoBehaviour
     void Start()
     {
         p = FindObjectOfType<PersistentData>();
+        progress = FindObjectOfType<ProgressScript>();
+        
     }
 
     // Update is called once per frame
@@ -104,12 +109,29 @@ public class PickOneScript : MonoBehaviour
     {
         CleanUp();
 
+        //increases progress bar
+        progress.AddProgress();
+        //Loads Next Scene
+
+        StartCoroutine(SceneDelay("Menu",3f));
+    }
+
+    //delays the transition to scene 'scene' by float 'time'
+    IEnumerator SceneDelay(string scene, float time)
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(time);
+
         //Selects the last piece in the series
         int listsize = pieces.Count;
-        for(int i = 0; i < listsize; i++)
+        for (int i = 0; i < listsize; i++)
         {
             if (pieces[i].getSeries() == pieceSeries)
-            { 
+            {
+                pieces[i].pickPiece();
                 Select(pieces[i]);
                 break;
             }
@@ -122,12 +144,13 @@ public class PickOneScript : MonoBehaviour
             PersistentData.Instance.SetPieces(givenvalues[1], givenvalues[0]);
         else
             PersistentData.Instance.SetPieces(givenvalues[0], givenvalues[1]);
-
         if (pieces.Count < 1)
             PersistentData.Instance.GameDone();
+        SceneManager.LoadScene(scene);
 
-        //Loads Next Scene
-        SceneManager.LoadScene("Menu");
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        
     }
 
     void Select(TimelinePiece p)
