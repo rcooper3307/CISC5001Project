@@ -56,6 +56,12 @@ public class PersistentData : MonoBehaviour
     {
         done = true;
     }
+
+    public void GameUndone()
+    {
+        done = false;
+    }
+
     public bool GameStatus()
     {
         return done;

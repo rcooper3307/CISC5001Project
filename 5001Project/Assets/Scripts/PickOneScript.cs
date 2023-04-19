@@ -15,6 +15,7 @@ public class PickOneScript : MonoBehaviour
     public GameObject pieceList;
     public int pieceSeries;
     public int[] givenvalues = new int[2];
+    public int[] indexValues = new int[2];
     public bool LGR = true;
 
     void Awake()
@@ -42,12 +43,12 @@ public class PickOneScript : MonoBehaviour
         //Assigns first piece and sets series value
         int listsize = pieces.Count;
         int random = Random.Range(0,listsize-1);
+        indexValues[0] = random;
 
         givenvalues[0] = pieces[random].getValue();
         pieceSeries = pieces[random].getSeries();
 
         pieces[random].transform.position = shownSpawnLoc.GetChild(0).position;
-        pieces[random].pickPiece();
             
         Select(pieces[random]);
 
@@ -59,10 +60,10 @@ public class PickOneScript : MonoBehaviour
 
         }while(pieces[random].getSeries() != pieceSeries);
 
+        indexValues[1] = random;
         givenvalues[1] = pieces[random].getValue();
 
         pieces[random].transform.position = shownSpawnLoc.GetChild(1).position;
-        pieces[random].pickPiece();
             
         Select(pieces[random]);
         
@@ -93,34 +94,36 @@ public class PickOneScript : MonoBehaviour
         Debug.Log(LGR);
     }
 
+    public void CleanUp()
+    {
+        int pieceindex = (piecesSelected.Count)-1;
 
+        piecesSelected[pieceindex].pickPiece();
+        piecesSelected[pieceindex-1].pickPiece();
+
+        piecesSelected[pieceindex].transform.position = selectedLoc.position;
+        piecesSelected[pieceindex-1].transform.position = selectedLoc.position;
+    }
 
     void Proceed()
     {
-
-        
-        
         //increases progress bar
         progress.AddProgress();
         //Loads Next Scene
 
         StartCoroutine(SceneDelay("Menu",3f));
     }
+
     //delays the transition to scene 'scene' by float 'time'
     IEnumerator SceneDelay(string scene, float time)
     {
-       
-
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
-        //Cleanup Section
-        int pieceindex = (piecesSelected.Count) - 1;
 
-        piecesSelected[pieceindex].transform.position = selectedLoc.position;
-        piecesSelected[pieceindex - 1].transform.position = selectedLoc.position;
+        CleanUp();
 
         //Selects the last piece in the series
         int listsize = pieces.Count;
@@ -128,7 +131,6 @@ public class PickOneScript : MonoBehaviour
         {
             if (pieces[i].getSeries() == pieceSeries)
             {
-                pieces[i].pickPiece();
                 Select(pieces[i]);
                 break;
             }

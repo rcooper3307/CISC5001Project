@@ -13,7 +13,7 @@ TagManager:
   - slot
   - Water
   - UI
-  - 
+  - Display
   - 
   - 
   - 
@@ -42,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: display
+    uniqueID: 2049590019
     locked: 0

@@ -18,7 +18,7 @@ public class TimelinePiece : MonoBehaviour
 
 
     private bool active = false;
-    private bool picked = false;
+    [SerializeField] private bool picked = false;
     private TimelineSlot Tslot;
     
     
@@ -163,6 +163,9 @@ public class TimelinePiece : MonoBehaviour
         picked = true;
     }
 
-    
-    
+    //Sets piece as not picked
+    public void releasePiece()
+    {
+        picked = false;
+    }
 }
