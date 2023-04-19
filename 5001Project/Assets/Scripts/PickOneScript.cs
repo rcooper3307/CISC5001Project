@@ -107,8 +107,6 @@ public class PickOneScript : MonoBehaviour
 
     void Proceed()
     {
-        CleanUp();
-
         //increases progress bar
         progress.AddProgress();
         //Loads Next Scene
@@ -125,13 +123,14 @@ public class PickOneScript : MonoBehaviour
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
 
+        CleanUp();
+
         //Selects the last piece in the series
         int listsize = pieces.Count;
         for (int i = 0; i < listsize; i++)
         {
             if (pieces[i].getSeries() == pieceSeries)
             {
-                pieces[i].pickPiece();
                 Select(pieces[i]);
                 break;
             }

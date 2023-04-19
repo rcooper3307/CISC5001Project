@@ -17,6 +17,11 @@ public class TimelineDisplay : MonoBehaviour
     public Text titleField;
     public string titlestring;
 
+    void Awake()
+    {
+        pieceList = GameObject.FindGameObjectWithTag("pieceList");
+    }
+
     // Start is called before the first frame update
     void Start()
     {

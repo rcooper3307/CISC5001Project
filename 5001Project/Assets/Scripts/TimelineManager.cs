@@ -89,7 +89,6 @@ public class TimelineManager : MonoBehaviour
             progress.AddProgress();
             StartCoroutine(SceneDelay("PickOne",3f));
         }
-
         else
         {
             progress.AddProgress();
@@ -111,6 +110,7 @@ public class TimelineManager : MonoBehaviour
 
         CleanUp();
 
+        SceneManager.LoadScene(scene);
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         // Code to execute after 3 second delay
