@@ -9,6 +9,7 @@ public class PickOneScript : MonoBehaviour
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] PersistentData p;
+    [SerializeField] public LevelLoader levelLoader;
     ProgressScript progress;
     
     
@@ -28,7 +29,10 @@ public class PickOneScript : MonoBehaviour
     {
         p = FindObjectOfType<PersistentData>();
         progress = FindObjectOfType<ProgressScript>();
-        
+        if (levelLoader == null)
+        {
+            levelLoader = FindObjectOfType<LevelLoader>();
+        }
     }
 
     // Update is called once per frame
@@ -123,7 +127,7 @@ public class PickOneScript : MonoBehaviour
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
 
-        CleanUp();
+        //CleanUp();
 
         //Selects the last piece in the series
         int listsize = pieces.Count;
@@ -145,7 +149,8 @@ public class PickOneScript : MonoBehaviour
             PersistentData.Instance.SetPieces(givenvalues[0], givenvalues[1]);
         if (pieces.Count < 1)
             PersistentData.Instance.GameDone();
-        SceneManager.LoadScene(scene);
+        levelLoader.LoadNextLevel(scene);
+        //SceneManager.LoadScene(scene);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);

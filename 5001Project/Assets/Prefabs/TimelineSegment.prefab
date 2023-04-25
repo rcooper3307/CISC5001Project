@@ -314,8 +314,8 @@ MonoBehaviour:
   seriesVal: 0
   textChild: {fileID: 0}
   description: 
-  rightAnswer: {fileID: 3591922378983196904}
-  wrongAnswer: {fileID: 8960420778994023141}
+  p: {fileID: 0}
+  picked: 0
 --- !u!222 &1685662496346523447
 CanvasRenderer:
   m_ObjectHideFlags: 0

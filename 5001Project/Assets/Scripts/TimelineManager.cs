@@ -11,6 +11,7 @@ public class TimelineManager : MonoBehaviour
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] PersistentData p;
+    [SerializeField] public LevelLoader levelLoader;
     ProgressScript progress;
 
     public GameObject pieceList;
@@ -32,7 +33,10 @@ public class TimelineManager : MonoBehaviour
         SpawnPiece();
         p = FindObjectOfType<PersistentData>();
         progress = FindObjectOfType<ProgressScript>();
-
+        if (levelLoader == null)
+        {
+            levelLoader = FindObjectOfType<LevelLoader>();
+        }
 
     }
     
@@ -110,7 +114,8 @@ public class TimelineManager : MonoBehaviour
 
         CleanUp();
 
-        SceneManager.LoadScene(scene);
+        levelLoader.LoadNextLevel(scene);
+        //SceneManager.LoadScene(scene);
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         // Code to execute after 3 second delay
