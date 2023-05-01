@@ -10,6 +10,7 @@ public class TimelineDisplay : MonoBehaviour
     [SerializeField] GameObject Timeline;
     [SerializeField] private List<GameObject> ElementsToPause;
     [SerializeField] private List<TimelinePiece> pieces;
+    [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] private Transform timelineSlots;
     [SerializeField] private Transform outOfDisplay;
     [SerializeField] public List<Text> textField;
@@ -17,29 +18,19 @@ public class TimelineDisplay : MonoBehaviour
     public GameObject pieceList;
     public int piecelistsize;
     public string titlestring;
-    public int seriesCount;
+    public int piecesPicked = 0;
     public int currentpage = 1;
     public int pageCount;
 
     void Awake()
     {
-        StoreLocation();
-        LoadLocation();
-        StoreLocation();
-        LoadLocation();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        pieceList = GameObject.FindGameObjectWithTag("pieceList");
-        piecelistsize = pieceList.transform.childCount;
 
-        TimelinePiece placeholder;
-        placeholder = pieceList.GetComponentInChildren<TimelinePiece>(piecelistsize - 1);
-        seriesCount = placeholder.getSeries();
-        pageCount = seriesCount;
-        Debug.Log(pageCount);
     }
 
     // Update is called once per frame
@@ -76,6 +67,7 @@ public class TimelineDisplay : MonoBehaviour
 
     public void DisplayTimeline()
     {
+        CountPages();
         StoreLocation();
         for (int i = 0; i < ElementsToPause.Count; i++)
         {
@@ -142,53 +134,66 @@ public class TimelineDisplay : MonoBehaviour
             textField[i].text = "";
         }
 
-        for (int i = 0; i < piecelistsize; i++)
+        for (int i = (currentpage-1)*6, j = 0; i < piecesSelected.Count && j < 6; i++, j++)
         {
-            TimelinePiece placeholder;
-            placeholder = pieceList.GetComponentInChildren<TimelinePiece>(i);
-            if (placeholder.isPicked())
+            if (piecesSelected[i].isPicked())
             {
-                if (placeholder.getSeries() == currentpage)
+                switch(i%6)
                 {
-                    switch(i%3)
-                    {
-                        case 0:
-                            placeholder.transform.position = timelineSlots.GetChild(0).position;
-                            textField[0].text = placeholder.GetComponentInChildren<TextMeshPro>().text;
-                            break;
-                        case 1:
-                            placeholder.transform.position = timelineSlots.GetChild(1).position;
-                            textField[1].text = placeholder.GetComponentInChildren<TextMeshPro>().text;
-                            break;
-                        case 2:
-                            placeholder.transform.position = timelineSlots.GetChild(2).position;
-                            textField[2].text = placeholder.GetComponentInChildren<TextMeshPro>().text;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if (placeholder.getSeries() == currentpage + 1)
-                {
-                    switch(i%3)
-                    {
-                        case 0:
-                            placeholder.transform.position = timelineSlots.GetChild(3).position;
-                            textField[3].text = placeholder.GetComponentInChildren<TextMeshPro>().text;
-                            break;
-                        case 1:
-                            placeholder.transform.position = timelineSlots.GetChild(4).position;
-                            textField[4].text = placeholder.GetComponentInChildren<TextMeshPro>().text;
-                            break;
-                        case 2:
-                            placeholder.transform.position = timelineSlots.GetChild(5).position;
-                            textField[5].text = placeholder.GetComponentInChildren<TextMeshPro>().text;
-                            break;
-                        default:
-                            break;
-                    }
+                    case 0:
+                        piecesSelected[i].transform.position = timelineSlots.GetChild(0).position;
+                        textField[0].text = piecesSelected[i].GetComponentInChildren<TextMeshPro>().text;
+                        break;
+                    case 1:
+                        piecesSelected[i].transform.position = timelineSlots.GetChild(1).position;
+                        textField[1].text = piecesSelected[i].GetComponentInChildren<TextMeshPro>().text;
+                        break;
+                    case 2:
+                        piecesSelected[i].transform.position = timelineSlots.GetChild(2).position;
+                        textField[2].text = piecesSelected[i].GetComponentInChildren<TextMeshPro>().text;
+                        break;
+                    case 3:
+                        piecesSelected[i].transform.position = timelineSlots.GetChild(3).position;
+                        textField[3].text = piecesSelected[i].GetComponentInChildren<TextMeshPro>().text;
+                        break;
+                    case 4:
+                        piecesSelected[i].transform.position = timelineSlots.GetChild(4).position;
+                        textField[4].text = piecesSelected[i].GetComponentInChildren<TextMeshPro>().text;
+                        break;
+                    case 5:
+                        piecesSelected[i].transform.position = timelineSlots.GetChild(5).position;
+                        textField[5].text = piecesSelected[i].GetComponentInChildren<TextMeshPro>().text;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
     }
+
+    public void CountPages()
+    {
+        pieceList = GameObject.FindGameObjectWithTag("pieceList");
+        piecelistsize = pieceList.transform.childCount;
+        for (int i = 0; i < piecelistsize; i++)
+        {
+            TimelinePiece placeholder;
+            placeholder = pieceList.GetComponentInChildren<TimelinePiece>(i);
+            if (placeholder.isPicked()) 
+            {
+                Select(placeholder);
+                piecesPicked++;
+            }
+        }
+
+        pageCount = (int)Mathf.Floor(piecesPicked/6);
+        if (piecesPicked%6 != 0) pageCount++;
+        Debug.Log(pageCount);
+    }
+
+    void Select(TimelinePiece p)
+    {
+        piecesSelected.Add(p);
+    }
 }
+

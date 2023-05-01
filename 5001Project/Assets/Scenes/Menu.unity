@@ -1238,7 +1238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400.155, y: -100.00834}
+  m_AnchoredPosition: {x: 400.155, y: -100.00833}
   m_SizeDelta: {x: 220, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348670169
@@ -1723,7 +1723,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -150.02203, y: 0.00000047660433}
-  m_SizeDelta: {x: 300, y: 600}
+  m_SizeDelta: {x: 300, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571815527
 MonoBehaviour:
@@ -3002,6 +3002,7 @@ MonoBehaviour:
   Timeline: {fileID: 1386539455}
   ElementsToPause: []
   pieces: []
+  piecesSelected: []
   timelineSlots: {fileID: 786360638}
   outOfDisplay: {fileID: 2111473165}
   textField:
@@ -3015,8 +3016,8 @@ MonoBehaviour:
   pieceList: {fileID: 0}
   piecelistsize: 0
   titlestring: 
-  seriesCount: 0
-  currentpage: 0
+  piecesPicked: 0
+  currentpage: 1
   pageCount: 0
 --- !u!1 &1466599449
 GameObject:
@@ -3284,7 +3285,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0.000061035156, y: 0.00000047660433}
-  m_SizeDelta: {x: 300, y: 600}
+  m_SizeDelta: {x: 300, y: 900}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1547403716
 MonoBehaviour:

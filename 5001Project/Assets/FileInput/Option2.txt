@@ -1,0 +1,9 @@
+Delaware Settled,Pennsylvania Settled,New Jersey Settled
+Boston Macassacre,Boston Tea Party,Declaration of Independence
+Constitution Drafted,George Washington elected President,Bill of Rights Ratified
+Lewis and Clark Expedition,The Trail of Tears,Gold Rush
+Abraham Lincoln elected President,Emancipation Proclamation,The Civil War Ends
+Transcontinental Railway First Built,Telephone Invented,Lightbulb Invented
+Wright Brothers make their First Flight,Ford's First Assembly Line Built,Women's Right to Vote
+World War I,Great Depression,World War 2
+Cold War,Korean War,Vietnam War

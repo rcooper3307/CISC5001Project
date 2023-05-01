@@ -14,7 +14,8 @@ public class StartScene : MonoBehaviour
     [SerializeField] public InputField playerDateInput;
     [SerializeField] public GameObject pieceList;
     [SerializeField] public GameObject TimelineSegment;
-    string filePath, fileName;
+    string filePath;
+    string fileName;
     Vector2 position = new Vector2((float)-600.9695, (float)-408.0458);
 
     // Start is called before the first frame update
@@ -24,12 +25,12 @@ public class StartScene : MonoBehaviour
         {
             pieceList = GameObject.FindGameObjectWithTag("pieceList");
         }
-        setPieceList();
+        Set1();
     }
+
     //reads file input and turns them into timeline piece objects
     void setPieceList()
     {
-        fileName = "World_History.txt";
         filePath = Application.dataPath + "/FileInput/" + fileName;
         using (StreamReader sr = new StreamReader(filePath))
         {
@@ -87,7 +88,29 @@ public class StartScene : MonoBehaviour
         p.GetComponent<TimelinePiece>().setSeries(PersistentData.Instance.finalSeries);
         p.transform.SetParent(pieceList.transform);
         */
+
+        setPieceList();
         
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Set1()
+    {
+        fileName = "Option1.txt";
+    }
+
+    public void Set2()
+    {
+        fileName = "Option2.txt";
+    }
+
+    public void Set3()
+    {
+        fileName = "Option3.txt";
+    }
+
+    public void Set4()
+    {
+        fileName = "Option4.txt";
     }
 }
