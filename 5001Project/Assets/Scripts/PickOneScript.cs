@@ -10,7 +10,10 @@ public class PickOneScript : MonoBehaviour
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] PersistentData p;
     [SerializeField] public LevelLoader levelLoader;
+    [SerializeField] public GameObject CorrectText;
+    [SerializeField] public GameObject WrongText;
     ProgressScript progress;
+
     
     
     public GameObject pieceList;
@@ -33,6 +36,8 @@ public class PickOneScript : MonoBehaviour
         {
             levelLoader = FindObjectOfType<LevelLoader>();
         }
+        CorrectText.SetActive(false);
+        WrongText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -124,10 +129,16 @@ public class PickOneScript : MonoBehaviour
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
+        if (WrongText.activeSelf)
+        {
+            WrongText.SetActive(false);
+        }
+        CorrectText.SetActive(true);
+
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
 
-        //CleanUp();
+        CleanUp();
 
         //Selects the last piece in the series
         int listsize = pieces.Count;
@@ -166,8 +177,15 @@ public class PickOneScript : MonoBehaviour
     public void SelectWrong()
     {
         p.Wrong();
+        StartCoroutine(WrongTextAppears());
         Debug.Log("Wrong");
 
+    }
+    public IEnumerator WrongTextAppears()
+    {
+        WrongText.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        WrongText.SetActive(false);
     }
     //plays the right noise
     public void SelectRight()

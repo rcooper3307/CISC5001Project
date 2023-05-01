@@ -14,6 +14,8 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] public TextMeshPro textChild;
     [SerializeField] private string description;
     [SerializeField] PersistentData p;
+    public TimelineManager tManager;
+    
     ProgressScript progress;
 
 
@@ -30,13 +32,17 @@ public class TimelinePiece : MonoBehaviour
         {
             textChild = GetComponentInChildren<TextMeshPro>();
         }
+        
     }
 
     void Start()
     {
         p = FindObjectOfType<PersistentData>();
         progress = FindObjectOfType<ProgressScript>();
+       
     }
+
+
     
     //When the mouse is held down, the object is picked up and grabbed
     void OnMouseDown()
@@ -53,6 +59,7 @@ public class TimelinePiece : MonoBehaviour
     //When the mouse is let go and the object is not in a slot on the timeline, it goes back to its original position
     void OnMouseUp()
     {
+
         if(active == true)
         {
             //If the object is within dropping distance of the slot, then it stays in the slot spot.
@@ -69,6 +76,7 @@ public class TimelinePiece : MonoBehaviour
             else
             {
                 p.Wrong();
+                StartCoroutine(tManager.WrongTextAppears());
                 transform.position = originalPos;
                 mouseDragging = false;
             }
@@ -78,6 +86,10 @@ public class TimelinePiece : MonoBehaviour
 
     void Update()
     {
+        if (tManager == null)
+        {
+            tManager = FindObjectOfType<TimelineManager>();
+        }
         //If the piece has been placed, don't do anything else
         if (placed) return;
         //If the piece isn't being picked up, leave it where it is

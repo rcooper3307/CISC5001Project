@@ -12,6 +12,9 @@ public class TimelineManager : MonoBehaviour
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] PersistentData p;
     [SerializeField] public LevelLoader levelLoader;
+    [SerializeField] public GameObject CorrectText;
+    [SerializeField] public GameObject WrongText;
+    
     ProgressScript progress;
 
     public GameObject pieceList;
@@ -37,8 +40,11 @@ public class TimelineManager : MonoBehaviour
         {
             levelLoader = FindObjectOfType<LevelLoader>();
         }
+        CorrectText.SetActive(false);
+        WrongText.SetActive(false);
 
     }
+    
     
     //Initial Slot Spawner
     void SpawnSlots()
@@ -77,12 +83,19 @@ public class TimelineManager : MonoBehaviour
   
     public void CleanUp()
     {
+        CorrectText.SetActive(false);
         piecesSelected[2].deactivate();
         piecesSelected[2].transform.position = selectedLoc.position;
         piecesSelected[0].transform.position = selectedLoc.position;
         piecesSelected[1].transform.position = selectedLoc.position;
 
         piecesSelected[2].pickPiece(); 
+    }
+    public IEnumerator WrongTextAppears()
+    {
+        WrongText.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        WrongText.SetActive(false);
     }
 
     public void Proceed()
@@ -108,8 +121,13 @@ public class TimelineManager : MonoBehaviour
     {
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
+        //if the "wrong" text is on the screen currently, make it invisible and activate the correct text
+        if (WrongText.activeSelf)
+        {
+            WrongText.SetActive(false);
+        }
+        CorrectText.SetActive(true);
+        //yield on a new YieldInstruction that waits for time seconds.
         yield return new WaitForSeconds(time);
 
         CleanUp();
