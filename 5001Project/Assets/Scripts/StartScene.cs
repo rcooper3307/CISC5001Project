@@ -14,6 +14,7 @@ public class StartScene : MonoBehaviour
     [SerializeField] public InputField playerDateInput;
     [SerializeField] public GameObject pieceList;
     [SerializeField] public GameObject TimelineSegment;
+    [SerializeField] public LevelLoader levelLoader;
     string filePath;
     string fileName;
     Vector2 position = new Vector2((float)-600.9695, (float)-408.0458);
@@ -25,7 +26,6 @@ public class StartScene : MonoBehaviour
         {
             pieceList = GameObject.FindGameObjectWithTag("pieceList");
         }
-        Set1();
     }
 
     //reads file input and turns them into timeline piece objects
@@ -88,29 +88,35 @@ public class StartScene : MonoBehaviour
         p.GetComponent<TimelinePiece>().setSeries(PersistentData.Instance.finalSeries);
         p.transform.SetParent(pieceList.transform);
         */
-
-        setPieceList();
         
-        SceneManager.LoadScene("MainMenu");
+        levelLoader.LoadNextLevel("LevelSelect");
     }
 
     public void Set1()
     {
         fileName = "Option1.txt";
+        setPieceList();
+        levelLoader.LoadNextLevel("MainMenu");
     }
 
     public void Set2()
     {
         fileName = "Option2.txt";
+        setPieceList();
+        levelLoader.LoadNextLevel("MainMenu");
     }
 
     public void Set3()
     {
         fileName = "Option3.txt";
+        setPieceList();
+        levelLoader.LoadNextLevel("MainMenu");
     }
 
     public void Set4()
     {
         fileName = "Option4.txt";
+        setPieceList();
+        levelLoader.LoadNextLevel("MainMenu");
     }
 }

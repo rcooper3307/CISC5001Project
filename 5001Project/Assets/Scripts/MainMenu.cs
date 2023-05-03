@@ -59,4 +59,15 @@ public class MainMenu : MonoBehaviour
         levelLoader.LoadNextLevel("Library");
         //SceneManager.LoadScene("Library");
     }
+
+    public void Return()
+    {
+        GameObject pieceList;
+        pieceList = GameObject.FindGameObjectWithTag("pieceList");
+        while (pieceList.transform.childCount > 0)
+        {
+            DestroyImmediate(pieceList.transform.GetChild(0).gameObject);
+        }
+        levelLoader.LoadNextLevel("LevelSelect");
+    }
 }
