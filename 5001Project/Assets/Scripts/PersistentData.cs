@@ -92,6 +92,7 @@ public class PersistentData : MonoBehaviour
         valueOfPieces[0] = POne;
         valueOfPieces[1] = PTwo;
     }
+
     IEnumerator Delay()
     {
         //Print the time of when the function is first called.
@@ -105,17 +106,23 @@ public class PersistentData : MonoBehaviour
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         // Code to execute after 3 second delay
     }
+
     public void Correct()
     {
         Debug.Log("COOOOOOOOORRRRRRRRRRRRECT");
         StartCoroutine(Delay());
-        
-        
+         
     }
+
     public void Wrong()
     {
         Debug.Log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE WRONG");
         
         AudioSource.PlayClipAtPoint(wrongAnswer.clip, new Vector2(0, 0));
+    }
+
+    public void ResetGame()
+    {
+        progressBar = 0;
     }
 }

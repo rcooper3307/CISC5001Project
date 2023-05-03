@@ -1,0 +1,10 @@
+Augustus,Claudius,Nero
+Galba,Otho,Vitellius
+Vespasian,Titus,Domitian
+Hadrian,Antoninus Pius,Marcus Aurelius
+Septimius Severus,Caracalla & Geta,Macrinus
+Gordian III,Valerian,Probus
+Diocletian,Galerius,Maxentius
+Constantine I,Constans I,Constantius II
+Valentinian I,Valens,Eugenius
+Justinian I,Maurice,Phocas

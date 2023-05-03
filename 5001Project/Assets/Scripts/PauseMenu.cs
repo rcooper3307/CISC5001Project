@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         for (int i = 0; i < pieceList.transform.childCount; i++)
             pieceList.GetComponentInChildren<TimelinePiece>(i).releasePiece();
         PersistentData.Instance.GameUndone();
+        PersistentData.Instance.ResetGame();
         pieceList.SetActive(true);
     }
 }
