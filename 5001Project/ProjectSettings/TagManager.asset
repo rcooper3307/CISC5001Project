@@ -6,6 +6,7 @@ TagManager:
   tags:
   - pieceList
   - text_object
+  - TimelineManager
   layers:
   - Default
   - TransparentFX

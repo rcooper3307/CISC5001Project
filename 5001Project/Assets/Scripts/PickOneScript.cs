@@ -9,7 +9,11 @@ public class PickOneScript : MonoBehaviour
     [SerializeField] private List<TimelinePiece> pieces;
     [SerializeField] private List<TimelinePiece> piecesSelected = new List<TimelinePiece>();
     [SerializeField] PersistentData p;
+    [SerializeField] public LevelLoader levelLoader;
+    [SerializeField] public GameObject CorrectText;
+    [SerializeField] public GameObject WrongText;
     ProgressScript progress;
+
     
     
     public GameObject pieceList;
@@ -28,7 +32,12 @@ public class PickOneScript : MonoBehaviour
     {
         p = FindObjectOfType<PersistentData>();
         progress = FindObjectOfType<ProgressScript>();
-        
+        if (levelLoader == null)
+        {
+            levelLoader = FindObjectOfType<LevelLoader>();
+        }
+        CorrectText.SetActive(false);
+        WrongText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -120,6 +129,12 @@ public class PickOneScript : MonoBehaviour
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
+        if (WrongText.activeSelf)
+        {
+            WrongText.SetActive(false);
+        }
+        CorrectText.SetActive(true);
+
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
 
@@ -145,7 +160,8 @@ public class PickOneScript : MonoBehaviour
             PersistentData.Instance.SetPieces(givenvalues[0], givenvalues[1]);
         if (pieces.Count < 1)
             PersistentData.Instance.GameDone();
-        SceneManager.LoadScene(scene);
+        levelLoader.LoadNextLevel(scene);
+        //SceneManager.LoadScene(scene);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
@@ -161,8 +177,15 @@ public class PickOneScript : MonoBehaviour
     public void SelectWrong()
     {
         p.Wrong();
+        StartCoroutine(WrongTextAppears());
         Debug.Log("Wrong");
 
+    }
+    public IEnumerator WrongTextAppears()
+    {
+        WrongText.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        WrongText.SetActive(false);
     }
     //plays the right noise
     public void SelectRight()

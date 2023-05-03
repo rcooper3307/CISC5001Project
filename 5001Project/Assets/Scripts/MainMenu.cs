@@ -7,11 +7,16 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Text nameField;
+    [SerializeField] public LevelLoader levelLoader;
 
     // Start is called before the first frame update
     void Start()
     {
         UpdateName();
+        if (levelLoader == null)
+        {
+            levelLoader = FindObjectOfType<LevelLoader>();
+        }
     }
 
     // Update is called once per frame
@@ -22,7 +27,8 @@ public class MainMenu : MonoBehaviour
 
     public void GotoMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        levelLoader.LoadNextLevel("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
     }
 
     void UpdateName()
@@ -32,21 +38,25 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("PickOne");
+        levelLoader.LoadNextLevel("PickOne");
+        //SceneManager.LoadScene("PickOne");
     }
 
     public void Instructions()
     {
-        SceneManager.LoadScene("Instructions");
+        levelLoader.LoadNextLevel("Instructions");
+        //SceneManager.LoadScene("Instructions");
     }
 
     public void Settings()
     {
-        SceneManager.LoadScene("Settings");
+        levelLoader.LoadNextLevel("Settings");
+        //SceneManager.LoadScene("Settings");
     }
     
     public void Library()
     {
-        SceneManager.LoadScene("Library");
+        levelLoader.LoadNextLevel("Library");
+        //SceneManager.LoadScene("Library");
     }
 }
