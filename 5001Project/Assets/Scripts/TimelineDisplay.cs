@@ -81,6 +81,7 @@ public class TimelineDisplay : MonoBehaviour
     
     public void Return()
     {
+        piecesSelected = new List<TimelinePiece>();
         Time.timeScale = 1f;
         for (int i = 0; i < ElementsToPause.Count; i++)
         {
@@ -175,6 +176,7 @@ public class TimelineDisplay : MonoBehaviour
     {
         pieceList = GameObject.FindGameObjectWithTag("pieceList");
         piecelistsize = pieceList.transform.childCount;
+        int piecesCounted = 0;
         for (int i = 0; i < piecelistsize; i++)
         {
             TimelinePiece placeholder;
@@ -182,9 +184,11 @@ public class TimelineDisplay : MonoBehaviour
             if (placeholder.isPicked()) 
             {
                 Select(placeholder);
-                piecesPicked++;
+                piecesCounted++;
             }
         }
+
+        piecesPicked = piecesCounted;
 
         pageCount = (int)Mathf.Floor(piecesPicked/6);
         if (piecesPicked%6 != 0) pageCount++;

@@ -13,9 +13,6 @@ public class PickOneScript : MonoBehaviour
     [SerializeField] public GameObject CorrectText;
     [SerializeField] public GameObject WrongText;
     ProgressScript progress;
-
-    
-    
     public GameObject pieceList;
     public int pieceSeries;
     public int[] givenvalues = new int[2];
@@ -129,6 +126,8 @@ public class PickOneScript : MonoBehaviour
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
+        PreCleanUp();
+        
         if (WrongText.activeSelf)
         {
             WrongText.SetActive(false);
@@ -138,7 +137,6 @@ public class PickOneScript : MonoBehaviour
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(time);
 
-        CleanUp();
 
         //Selects the last piece in the series
         int listsize = pieces.Count;
@@ -160,6 +158,8 @@ public class PickOneScript : MonoBehaviour
             PersistentData.Instance.SetPieces(givenvalues[0], givenvalues[1]);
         if (pieces.Count < 1)
             PersistentData.Instance.GameDone();
+            
+        CleanUp();
         levelLoader.LoadNextLevel(scene);
         //SceneManager.LoadScene(scene);
 
@@ -210,5 +210,14 @@ public class PickOneScript : MonoBehaviour
             else
                 pieces.Add(placeholder);
         }
+    }
+
+    public void PreCleanUp()
+    {
+        GameObject correct = GameObject.Find("CorrectChoice");
+        GameObject wrong = GameObject.Find("WrongChoice");
+
+        correct.transform.position = buttonLoc.GetChild(2).position;
+        wrong.transform.position = buttonLoc.GetChild(2).position;
     }
 }
