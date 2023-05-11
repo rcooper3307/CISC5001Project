@@ -31,7 +31,6 @@ public class TimelineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         SpawnSlots();
         SpawnPiece();
         p = FindObjectOfType<PersistentData>();
@@ -42,7 +41,6 @@ public class TimelineManager : MonoBehaviour
         }
         CorrectText.SetActive(false);
         WrongText.SetActive(false);
-
     }
     
     
@@ -91,6 +89,7 @@ public class TimelineManager : MonoBehaviour
 
         piecesSelected[2].pickPiece(); 
     }
+
     public IEnumerator WrongTextAppears()
     {
         WrongText.SetActive(true);
@@ -128,6 +127,7 @@ public class TimelineManager : MonoBehaviour
             WrongText.SetActive(false);
         }
         CorrectText.SetActive(true);
+        piecesSelected[2].deactivate();
         //yield on a new YieldInstruction that waits for time seconds.
         yield return new WaitForSeconds(time);
 
