@@ -1,3 +1,5 @@
-Punch Cards,Turning Machine,Hewiett-Packard founded
-ENIAC Built,Transistors Invented,COBOL Created
-Processors Created,Floppy Disk Created, Apple Founded
+Hillel,Saadiah Gaon,Rashi
+Mishnah,Gemara,Shulchan Aruch
+Rashbam,Abarbanel,Rav Hirsch
+Tzom Gedaliah,Purim,Chanukah
+Miriam,Ruth,Esther

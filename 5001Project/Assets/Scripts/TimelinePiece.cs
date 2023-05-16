@@ -13,6 +13,7 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] private int seriesVal;
     [SerializeField] public TextMeshPro textChild;
     [SerializeField] private string description;
+    [SerializeField] private string year;
     [SerializeField] PersistentData p;
     public TimelineManager tManager;
     
@@ -179,5 +180,15 @@ public class TimelinePiece : MonoBehaviour
     public void releasePiece()
     {
         picked = false;
+    }
+
+    public void setYear(string date)
+    {
+        year = date;
+    }
+
+    public string getYear()
+    {
+        return year;
     }
 }

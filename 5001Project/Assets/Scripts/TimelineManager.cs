@@ -108,11 +108,11 @@ public class TimelineManager : MonoBehaviour
         else
         {
             progress.AddProgress();
-            StartCoroutine(SceneDelay("MainMenu", 3f));
             for (int i = 0; i < pieceList.transform.childCount; i++)
                 pieceList.GetComponentInChildren<TimelinePiece>(i).releasePiece();
             PersistentData.Instance.GameUndone();
             PersistentData.Instance.ResetGame();
+            StartCoroutine(SceneDelay("Final", 3f));
         }
             
     }

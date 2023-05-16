@@ -433,7 +433,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: World History
+  m_Text: Hebrew History I
 --- !u!222 &137441046
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -991,7 +991,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Roman Emperors
+  m_Text: World History
 --- !u!222 &592593773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1339,7 +1339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: American History
+  m_Text: Hebrew History II
 --- !u!222 &989740793
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1967,7 +1967,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Comp Sci History
+  m_Text: Hebrew History III
 --- !u!222 &1328953501
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2500,6 +2500,7 @@ MonoBehaviour:
   seriesOn: 0
   valueOfPieces: 0000000000000000
   done: 0
+  completed: 0
   rightAnswer: {fileID: 1817479602}
   wrongAnswer: {fileID: 1817479603}
   finalSeries: 999
