@@ -126,7 +126,7 @@ public class PickOneScript : MonoBehaviour
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
-        PreCleanUp();
+         PreCleanUp();
         
         if (WrongText.activeSelf)
         {
@@ -138,7 +138,6 @@ public class PickOneScript : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         CleanUp();
-        
         //Selects the last piece in the series
         int listsize = pieces.Count;
         for (int i = 0; i < listsize; i++)
@@ -160,6 +159,7 @@ public class PickOneScript : MonoBehaviour
         if (pieces.Count < 1)
             PersistentData.Instance.GameDone();
             
+        
         levelLoader.LoadNextLevel(scene);
         //SceneManager.LoadScene(scene);
 
