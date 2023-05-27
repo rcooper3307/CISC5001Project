@@ -45,7 +45,7 @@ public class LibraryShowCase : MonoBehaviour
             specialPage = true;
             titlestring = PersistentData.Instance.GetName();
             titleField.text = titlestring;
-            year.text = PersistentData.Instance.GetDate() +" AD";
+            year.text = PersistentData.Instance.GetDate() +" CE";
             description.text = "The year where you completed the game!";
         }
         else
