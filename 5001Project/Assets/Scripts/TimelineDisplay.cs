@@ -82,13 +82,13 @@ public class TimelineDisplay : MonoBehaviour
     public void Return()
     {
         piecesSelected = new List<TimelinePiece>();
-        Time.timeScale = 1f;
         for (int i = 0; i < ElementsToPause.Count; i++)
         {
             ElementsToPause[i].SetActive(true);
         }
         Timeline.SetActive(false);
         LoadLocation();
+        Time.timeScale = 1f;
     }
     
     public void StoreLocation()

@@ -58,12 +58,10 @@ public class StartScene : MonoBehaviour
                     value++;
                 }
                 series++;
-              
                 
                 //Add lists into list of lists
                 //eventsArr.Add(items);
             }
-
         }
     }
 
@@ -76,8 +74,10 @@ public class StartScene : MonoBehaviour
     public void PlayGame()
     {
         string s = playerNameInput.text;
+        string d = playerDateInput.text;
         
         PersistentData.Instance.SetName(s);
+        PersistentData.Instance.SetDate(d);
         /*
          * Commented out code to insert a value for the players name and date to be used as an object
         string d = playerDateInput.text;

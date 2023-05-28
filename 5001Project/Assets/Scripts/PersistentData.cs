@@ -5,9 +5,11 @@ using UnityEngine;
 public class PersistentData : MonoBehaviour
 {
     [SerializeField] string playerName;
+    [SerializeField] string date;
     [SerializeField] int seriesOn;
     [SerializeField] public int[] valueOfPieces = new int[2];
     [SerializeField] bool done = false;
+    [SerializeField] bool completed = false;
     [SerializeField] AudioSource rightAnswer;
     [SerializeField] AudioSource wrongAnswer;
     public int finalSeries = 999;
@@ -124,5 +126,25 @@ public class PersistentData : MonoBehaviour
     public void ResetGame()
     {
         progressBar = 0;
+    }
+
+    public bool CheckCompletion()
+    {
+        return completed;
+    }
+
+    public void SetCompletion(bool status)
+    {
+        completed = status;
+    }
+
+    public void SetDate(string d)
+    {
+        date = d;
+    }
+
+    public string GetDate()
+    {
+        return date;
     }
 }

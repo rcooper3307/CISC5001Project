@@ -47,12 +47,6 @@ public class MainMenu : MonoBehaviour
         levelLoader.LoadNextLevel("Instructions");
         //SceneManager.LoadScene("Instructions");
     }
-
-    public void Settings()
-    {
-        levelLoader.LoadNextLevel("Settings");
-        //SceneManager.LoadScene("Settings");
-    }
     
     public void Library()
     {
@@ -69,5 +63,12 @@ public class MainMenu : MonoBehaviour
             DestroyImmediate(pieceList.transform.GetChild(0).gameObject);
         }
         levelLoader.LoadNextLevel("LevelSelect");
+    }
+
+    public void GameFinished()
+    {
+        PersistentData.Instance.SetCompletion(true);
+        levelLoader.LoadNextLevel("MainMenu");
+        //SceneManager.LoadScene("Settings");
     }
 }
