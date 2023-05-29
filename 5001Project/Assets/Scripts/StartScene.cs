@@ -27,33 +27,10 @@ public class StartScene : MonoBehaviour
             pieceList = GameObject.FindGameObjectWithTag("pieceList");
         }
     }
-    /*
-      private List<string> TextAssetToList(TextAsset ta)
- {
-     var listToReturn = new List<string>();
-     var arrayString = ta.text.Split('\n');
-     foreach (var line in arrayString)
-     {
-         listToReturn.Add(line);
-     }
-     return listToReturn;
- }
-     */
-
-
-
-
-
-
-
-
-
 
     //reads file input and turns them into timeline piece objects
     void setPieceList()
     {
-        //filePath = Application.dataPath + "/FileInput/" + fileName;
-        //Resources.Load<TextAsset>(fileName)
         TextAsset ta = Resources.Load<TextAsset>(fileName);
 
         List<string> fileInput = ta.text.Split('\n').ToList();
@@ -79,45 +56,6 @@ public class StartScene : MonoBehaviour
             series++;
         }
 
-       /* while (!sr.EndOfStream)
-        {
-
-
-            // Reads the next line
-            string line = sr.ReadLine();
-
-            // Split the string by commas
-            List<string> items = line.Split(',').ToList();
-            foreach (string s in items)
-            {
-                //Declare and initialize TimelinePiece and add it to PieceList
-                GameObject p = Instantiate(TimelineSegment, position, Quaternion.identity);
-                p.name = s;
-                p.GetComponent<TimelinePiece>().setText(s);
-                p.GetComponent<TimelinePiece>().setValue(value);
-                p.GetComponent<TimelinePiece>().setSeries(series);
-                p.transform.SetParent(pieceList.transform);
-                value++;
-            }
-            series++;
-
-
-            //Add lists into list of lists
-            //eventsArr.Add(items);
-        }
-        using (StreamReader sr = new StreamReader(Resources.Load<TextAsset>(fileName)))
-        {
-            
-
-        }
-       */
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PlayGame()
     {
