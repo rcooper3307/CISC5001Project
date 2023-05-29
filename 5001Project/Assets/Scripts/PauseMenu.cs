@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject Pause;
     [SerializeField] private List<GameObject> ElementsToPause;
+    [SerializeField] private Transform outOfDisplay;
     public GameObject pieceList;
 
     // Start is called before the first frame update
@@ -30,22 +31,21 @@ public class PauseMenu : MonoBehaviour
             ElementsToPause[i].SetActive(false);
         }
 
-        Time.timeScale = 0f;
-
         Pause.SetActive(true);
 
         pieceList.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     public void Resume()
     {
+        Time.timeScale = 1f;
         for (int i = 0; i < ElementsToPause.Count; i++)
         {
             ElementsToPause[i].SetActive(true);
         }
         pieceList.SetActive(true);
 
-        Time.timeScale = 1f;
 
         Pause.SetActive(false);
     }
@@ -55,7 +55,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
         for (int i = 0; i < pieceList.transform.childCount; i++)
+        {
             pieceList.GetComponentInChildren<TimelinePiece>(i).releasePiece();
+            pieceList.GetComponentInChildren<TimelinePiece>(i).transform.position = outOfDisplay.position;
+        }
         PersistentData.Instance.GameUndone();
         PersistentData.Instance.ResetGame();
         pieceList.SetActive(true);

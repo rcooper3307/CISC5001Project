@@ -13,7 +13,10 @@ public class LibraryShowCase : MonoBehaviour
     public int piecelistsize;
     public int currentpiece;
     public Text titleField;
+    public Text year;
+    public Text description;
     public string titlestring;
+    public bool specialPage = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +34,19 @@ public class LibraryShowCase : MonoBehaviour
     {
         if(currentpiece != piecelistsize - 1)
         {
-            pieces[currentpiece].transform.position = outofFrameLoc.position;
-            pieces[++currentpiece].transform.position = displayLoc.position;  
-
+            currentpiece++;
             titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
             titleField.text = titlestring;
+            year.text = "" + pieces[currentpiece].getYear();
+            description.text = ""+ pieces[currentpiece].getDesc();
+        }
+        else if(PersistentData.Instance.CheckCompletion())
+        {
+            specialPage = true;
+            titlestring = PersistentData.Instance.GetName();
+            titleField.text = titlestring;
+            year.text = PersistentData.Instance.GetDate() +" CE";
+            description.text = "The year where you completed the game!";
         }
         else
         {
@@ -45,13 +56,21 @@ public class LibraryShowCase : MonoBehaviour
 
     public void GoLeft()
     {
-        if(currentpiece != 0)
+        if (specialPage)
         {
-            pieces[currentpiece].transform.position = outofFrameLoc.position;
-            pieces[--currentpiece].transform.position = displayLoc.position;   
-            
+            specialPage = false;
             titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
             titleField.text = titlestring;
+            year.text = "" + pieces[currentpiece].getYear();
+            description.text = ""+ pieces[currentpiece].getDesc();
+        }
+        else if(currentpiece != 0)
+        {
+            currentpiece--;
+            titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
+            titleField.text = titlestring;
+            year.text = "" + pieces[currentpiece].getYear();
+            description.text = ""+ pieces[currentpiece].getDesc();
         }
         else
         {
@@ -75,7 +94,6 @@ public class LibraryShowCase : MonoBehaviour
         }
 
         piecelistsize = pieces.Count;
-        pieces[currentpiece].transform.position = displayLoc.position;
 
         titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
         titleField.text = titlestring;
@@ -84,6 +102,5 @@ public class LibraryShowCase : MonoBehaviour
     public void GotoMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        pieces[currentpiece].transform.position = outofFrameLoc.position;
     }
 }

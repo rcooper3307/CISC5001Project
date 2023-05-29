@@ -1,9 +1,5 @@
-Agricultural Revolution, first civilizations founded, pyramids built in Egypt
-Confucius, Alexander the Great, Julius Caesar
-start of Judaism, start of Christianity, start of Islam
-First Crusade, Genghis Khan, Columbus discovers America
-Black Plague, invention of the printing press, painting of the Mona Lisa
-Taj Mahal built, steam engine invented, cowpox vaccine developed
-World War I, World War II, Vietnam War
-Buddha, Napoleon, Louis Pasteur
-George Washington, Wright brothers, Albert Einstein
+Creation,Flood,Tower of Bavel
+Avraham travels from Aram Neharaim,Avraham travels to Egypt,Battle of Siddim
+Sarah is taken in Egypt,Sarah gives Hagar to Avraham,Sarah laughs about news of her baby
+Exodus,Conquest of Canaan,Saul becomes a king
+Shlomo builds Mikdash,Rechavam becomes a king,Omri finds Shomron

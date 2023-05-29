@@ -452,7 +452,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3972021850470620480, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_text
-      value: Roman Emperors
+      value: World History
       objectReference: {fileID: 0}
     - target: {fileID: 3972021851669090124, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_Pivot.x
@@ -829,7 +829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3972021850470620480, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_text
-      value: World History
+      value: Hebrew History 1
       objectReference: {fileID: 0}
     - target: {fileID: 3972021850470620480, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_fontSize
@@ -1047,7 +1047,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3972021850470620480, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_text
-      value: Comp Sci History
+      value: Hebrew History 3
       objectReference: {fileID: 0}
     - target: {fileID: 3972021851669090124, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_Pivot.x
@@ -1913,6 +1913,7 @@ MonoBehaviour:
   seriesVal: 0
   textChild: {fileID: 0}
   description: 
+  year: 
   p: {fileID: 0}
   tManager: {fileID: 0}
   picked: 0
@@ -2263,9 +2264,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
+  date: 
   seriesOn: 0
   valueOfPieces: 0000000000000000
   done: 0
+  completed: 0
   rightAnswer: {fileID: 1817479602}
   wrongAnswer: {fileID: 1817479603}
   finalSeries: 999
@@ -2603,7 +2606,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3972021850470620480, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_text
-      value: American History
+      value: Hebrew History 2
       objectReference: {fileID: 0}
     - target: {fileID: 3972021850470620483, guid: e8d67447dbb3e33429b66911852b2894, type: 3}
       propertyPath: m_SizeDelta.y
