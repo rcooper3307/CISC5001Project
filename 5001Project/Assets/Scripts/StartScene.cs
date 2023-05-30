@@ -55,7 +55,7 @@ public class StartScene : MonoBehaviour
             }
             series++;
         }
-
+    }
 
     public void PlayGame()
     {
