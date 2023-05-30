@@ -38,7 +38,7 @@ public class StartScene : MonoBehaviour
         int series = 1;
         int value = 1;
 
-        foreach(string line in fileInput)
+        foreach (string line in fileInput)
         {
             List<string> items = line.Split(',').ToList();
 
@@ -55,6 +55,7 @@ public class StartScene : MonoBehaviour
             }
             series++;
         }
+    }
 
 
     public void PlayGame()
