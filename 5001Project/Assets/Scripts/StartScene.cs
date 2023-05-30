@@ -31,45 +31,31 @@ public class StartScene : MonoBehaviour
     //reads file input and turns them into timeline piece objects
     void setPieceList()
     {
-        filePath = Application.dataPath + "/FileInput/" + fileName;
-        using (StreamReader sr = new StreamReader(filePath))
+        TextAsset ta = Resources.Load<TextAsset>(fileName);
+
+        List<string> fileInput = ta.text.Split('\n').ToList();
+
+        int series = 1;
+        int value = 1;
+
+        foreach(string line in fileInput)
         {
-            int series = 1;
-            int value = 1;
-            
-            while (!sr.EndOfStream)
+            List<string> items = line.Split(',').ToList();
+
+            foreach (string s in items)
             {
-                
-
-                // Reads the next line
-                string line = sr.ReadLine();
-
-                // Split the string by commas
-                List<string> items = line.Split(',').ToList();
-                foreach(string s in items)
-                {
-                    //Declare and initialize TimelinePiece and add it to PieceList
-                    GameObject p = Instantiate(TimelineSegment, position, Quaternion.identity);
-                    p.name = s;
-                    p.GetComponent<TimelinePiece>().setText(s);
-                    p.GetComponent<TimelinePiece>().setValue(value);
-                    p.GetComponent<TimelinePiece>().setSeries(series);
-                    p.transform.SetParent(pieceList.transform);
-                    value++;
-                }
-                series++;
-                
-                //Add lists into list of lists
-                //eventsArr.Add(items);
+                //Declare and initialize TimelinePiece and add it to PieceList
+                GameObject p = Instantiate(TimelineSegment, position, Quaternion.identity);
+                p.name = s;
+                p.GetComponent<TimelinePiece>().setText(s);
+                p.GetComponent<TimelinePiece>().setValue(value);
+                p.GetComponent<TimelinePiece>().setSeries(series);
+                p.transform.SetParent(pieceList.transform);
+                value++;
             }
+            series++;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void PlayGame()
     {
@@ -94,28 +80,28 @@ public class StartScene : MonoBehaviour
 
     public void Set1()
     {
-        fileName = "Option1.txt";
+        fileName = "Option1";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
 
     public void Set2()
     {
-        fileName = "Option2.txt";
+        fileName = "Option2";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
 
     public void Set3()
     {
-        fileName = "Option3.txt";
+        fileName = "Option3";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
 
     public void Set4()
     {
-        fileName = "Option4.txt";
+        fileName = "Option4";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
