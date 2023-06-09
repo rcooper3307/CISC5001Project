@@ -12,7 +12,11 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateName();
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        {
+            UpdateName();
+        }
+            
         if (levelLoader == null)
         {
             levelLoader = FindObjectOfType<LevelLoader>();
