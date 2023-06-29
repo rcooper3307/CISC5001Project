@@ -89,14 +89,22 @@ public class LibraryShowCase : MonoBehaviour
         for (int i = 0; i < piecelistsize; i++)
         {
             TimelinePiece placeholder;
-            placeholder = pieceList.GetComponentInChildren<TimelinePiece>(i);
-            pieces.Add(placeholder);
+            for (int j = 0; j < piecelistsize; j++)
+            {
+                placeholder = pieceList.GetComponentInChildren<TimelinePiece>(j);
+                if (placeholder.getOrder() == i+1)
+                {
+                    pieces.Add(placeholder);
+                    break;
+                }
+            }
         }
 
         piecelistsize = pieces.Count;
 
         titlestring = pieces[currentpiece].GetComponentInChildren<TextMeshPro>().text;
         titleField.text = titlestring;
+        year.text = "" + pieces[currentpiece].getYear();
     }
 
     public void GotoMainMenu()

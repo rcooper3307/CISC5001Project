@@ -17,6 +17,8 @@ public class StartScene : MonoBehaviour
     [SerializeField] public LevelLoader levelLoader;
     string filePath;
     string fileName;
+    string fileNameDates;
+    string fileNameOrders;
     Vector2 position = new Vector2((float)-600.9695, (float)-408.0458);
 
     // Start is called before the first frame update
@@ -32,8 +34,12 @@ public class StartScene : MonoBehaviour
     void setPieceList()
     {
         TextAsset ta = Resources.Load<TextAsset>(fileName);
+        TextAsset taD = Resources.Load<TextAsset>(fileNameDates);
+        TextAsset taO = Resources.Load<TextAsset>(fileNameOrders);
 
         List<string> fileInput = ta.text.Split('\n').ToList();
+        List<string> dates = taD.text.Split(',').ToList();
+        List<string> orderString = taO.text.Split(',').ToList();
 
         int series = 1;
         int value = 1;
@@ -50,6 +56,8 @@ public class StartScene : MonoBehaviour
                 p.GetComponent<TimelinePiece>().setText(s);
                 p.GetComponent<TimelinePiece>().setValue(value);
                 p.GetComponent<TimelinePiece>().setSeries(series);
+                p.GetComponent<TimelinePiece>().setYear(dates[value-1]);
+                p.GetComponent<TimelinePiece>().setOrder(int.Parse(orderString[value-1]));
                 p.transform.SetParent(pieceList.transform);
                 value++;
             }
@@ -82,6 +90,8 @@ public class StartScene : MonoBehaviour
     public void Set1()
     {
         fileName = "Option1";
+        fileNameDates = "Option1Dates";
+        fileNameOrders = "Option1Order";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
@@ -89,6 +99,8 @@ public class StartScene : MonoBehaviour
     public void Set2()
     {
         fileName = "Option2";
+        fileNameDates = "Option2Dates";
+        fileNameOrders = "Option2Order";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
@@ -96,6 +108,8 @@ public class StartScene : MonoBehaviour
     public void Set3()
     {
         fileName = "Option3";
+        fileNameDates = "Option3Dates";
+        fileNameOrders = "Option3Order";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }
@@ -103,6 +117,8 @@ public class StartScene : MonoBehaviour
     public void Set4()
     {
         fileName = "Option4";
+        fileNameDates = "Option4Dates";
+        fileNameOrders = "Option4Order";
         setPieceList();
         levelLoader.LoadNextLevel("MainMenu");
     }

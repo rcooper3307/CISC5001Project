@@ -14,6 +14,7 @@ public class TimelinePiece : MonoBehaviour
     [SerializeField] public TextMeshPro textChild;
     [SerializeField] private string description;
     [SerializeField] private string year;
+    [SerializeField] private int order;
     [SerializeField] PersistentData p;
     public TimelineManager tManager;
     
@@ -190,5 +191,15 @@ public class TimelinePiece : MonoBehaviour
     public string getYear()
     {
         return year;
+    }
+
+    public void setOrder(int pos)
+    {
+        order = pos;
+    }
+
+    public int getOrder()
+    {
+        return order;
     }
 }
